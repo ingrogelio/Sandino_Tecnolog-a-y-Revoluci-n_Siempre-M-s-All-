@@ -863,34 +863,28 @@
                 </div>
                 <h6 class="mt-3">Noticias Recientes</h6>
                 <ul class="list-unstyled" style="font-size: 0.85rem;">
-                    <li class="mb-1"><a class="text-decoration-none text-dark" href="#">→ Homenaje en Las Segovias</a></li>
-                    <li class="mb-1"><a class="text-decoration-none text-dark" href="#">→ Nuevo documental sobre Sandino</a></li>
-                    <li class="mb-1"><a class="text-decoration-none text-dark" href="#">→ Tecnología educativa sandinista</a></li>
+                    <li class="mb-1"><a class="text-decoration-none text-dark" href="https://www.youtube.com/watch?v=fx0FaZz-rt8">→ Homenaje en Las Segovias</a></li>
+                    <li class="mb-1"><a class="text-decoration-none text-dark" href="https://www.youtube.com/watch?v=_-WhSuK0efE">→ Nuevo documental sobre Sandino</a></li>
+                    <li class="mb-1"><a class="text-decoration-none text-dark" href="https://www.youtube.com/watch?v=ti1ILcsNJLk">→ Tecnología educativa sandinista</a></li>
                 </ul>
             </div>
 
             <div class="widget-panel fade-in">
-                <h5><i class="fas fa-calendar-alt me-2"></i>Calendario</h5>
-                <div class="text-center">
-                    <strong>Febrero 2026</strong>
-                    <div class="d-grid gap-1 mt-2" style="font-size: 0.8rem; grid-template-columns: repeat(7,1fr);">
-                        <span>L</span><span>M</span><span>X</span><span>J</span><span>V</span><span>S</span><span>D</span>
-                        <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span>
-                        <span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span>
-                        <span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span style="background: var(--rojo-intenso); border-radius: 50%; color: white;">21</span>
-                    </div>
-                </div>
-                <p class="text-center mt-2 mb-0" style="font-size: 0.8rem;">🗓️ 21 feb: Natalicio de Sandino</p>
-            </div>
+    <h5><i class="fas fa-calendar-alt me-2"></i>Calendario</h5>
+    <div class="text-center">
+        <strong id="mes-año"></strong>
+        <div id="calendar-grid" class="d-grid gap-1 mt-2" style="font-size: 0.8rem; grid-template-columns: repeat(7,1fr);">
+            <!-- Los días se generarán aquí automáticamente -->
+        </div>
+    </div>
+    <p id="efemeride" class="text-center mt-2 mb-0" style="font-size: 0.8rem;"></p>
+</div>
 
-            <div class="widget-panel fade-in">
-                <h5><i class="fas fa-eye me-2"></i>Contador de Visitas</h5>
-                <p class="text-center" style="color: var(--rojo-intenso); font-size: 1.5rem; font-weight: 700;">12,847</p>
-            </div>
-
-            <div class="widget-panel fade-in">
+             <div class="widget-panel fade-in">
                 <h5><i class="fas fa-quote-right me-2"></i>Frase del Día</h5>
                 <p class="frase-revolucionaria" id="fraseAleatoria">"La soberanía de un pueblo no se discute, se defiende con las armas en la mano."</p>
+                 <p class="frase-revolucionaria" id="fraseAleatoria">"Nosotros iremos hacia el sol de la libertad o hacia la muerte; y si morimos, nuestra causa seguirá viviendo. Otros nos seguirán."</p>
+                 <p class="frase-revolucionaria" id="fraseAleatoria">"En la escala de la vida, solo los que luchan tienen derecho a la luz."</p>
             </div>
 
             <div class="widget-panel fade-in text-center" id="documentos">
@@ -1141,6 +1135,67 @@
 
         console.log('✅ Sitio "Sandino: Tecnología y Revolución | Siempre Más Allá" cargado exitosamente.');
     })();
+</script>
+    <script>
+function generarCalendario() {
+    const ahora = new Date();
+    const hoy = ahora.getDate();
+    const mesActual = ahora.getMonth();
+    const añoActual = ahora.getFullYear();
+
+    const nombresMeses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+    const diasSemana = ['L', 'M', 'X', 'J', 'V', 'S', 'D'];
+
+    // Mostrar Mes y Año
+    document.getElementById('mes-año').innerText = `${nombresMeses[mesActual]} ${añoActual}`;
+
+    const grid = document.getElementById('calendar-grid');
+    grid.innerHTML = ''; // Limpiar contenido previo
+
+    // 1. Agregar encabezados de días
+    diasSemana.forEach(dia => {
+        const span = document.createElement('span');
+        span.innerHTML = `<strong>${dia}</strong>`;
+        grid.appendChild(span);
+    });
+
+    // 2. Calcular primer día del mes (ajustado a lunes=0)
+    let primerDia = new Date(añoActual, mesActual, 1).getDay();
+    let offset = primerDia === 0 ? 6 : primerDia - 1; // Ajuste para que empiece en Lunes
+
+    // 3. Espacios en blanco para el inicio
+    for (let i = 0; i < offset; i++) {
+        grid.appendChild(document.createElement('span'));
+    }
+
+    // 4. Generar días del mes
+    const ultimoDia = new Date(añoActual, mesActual + 1, 0).getDate();
+    
+    for (let dia = 1; dia <= ultimoDia; dia++) {
+        const span = document.createElement('span');
+        span.innerText = dia;
+
+        // Resaltar el día de hoy
+        if (dia === hoy) {
+            span.style.background = "var(--rojo-intenso, #d32f2f)";
+            span.style.borderRadius = "50%";
+            span.style.color = "white";
+            span.style.fontWeight = "bold";
+        }
+        grid.appendChild(span);
+    }
+
+    // 5. Efeméride lógica (Ejemplo: Sandino en febrero)
+    const textoEfemeride = document.getElementById('efemeride');
+    if (mesActual === 1) { // Febrero es mes 1 en JS
+        textoEfemeride.innerHTML = "🗓️ 21 feb: Paso a la Inmortalidad de Sandino";
+    } else {
+        textoEfemeride.innerHTML = "🗓️ No hay eventos programados";
+    }
+}
+
+// Ejecutar al cargar
+generarCalendario();
 </script>
 </body>
 </html>
