@@ -1,0 +1,1146 @@
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8"></meta>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
+    <title>Sandino: Tecnología y Revolución | Siempre Más Allá</title>
+    <meta content="Portal histórico y tecnológico dedicado al General Augusto C. Sandino. Historia, multimedia, galería y legado revolucionario." name="description"></meta>
+    <meta content="Augusto C. Sandino, revolución, Nicaragua, historia, tecnología, legado, Sandino" name="keywords"></meta>
+    <meta content="Sandino: Tecnología y Revolución" name="author"></meta>
+    <meta content="index, follow" name="robots"></meta>
+    <link href="https://tu-blog.blogspot.com/" rel="canonical"></link>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"></link>
+    <!-- Font Awesome 6 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"></link>
+    <!-- Swiper CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" rel="stylesheet"></link>
+    <!-- Google Fonts: combinación moderna + histórica -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&amp;family=Inter:wght@300;400;500;600;700&amp;family=Oswald:wght@400;500;600;700&amp;display=swap" rel="stylesheet"></link>
+
+    <style>
+        :root {
+            --negro: #0d0d0d;
+            --rojo-intenso: #b41e1e;
+            --rojo-oscuro: #8b0000;
+            --rojo-claro: #d4a843;
+            --blanco: #f8f8f8;
+            --gris-oscuro: #1a1a1a;
+            --gris-suave: #f0ebe3;
+            --beige-historico: #e8dcc8;
+            --dorado: #c9a84c;
+            --sombra: 0 8px 32px rgba(0, 0, 0, 0.15);
+            --sombra-hover: 0 16px 48px rgba(0, 0, 0, 0.25);
+            --transicion: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--gris-suave);
+            color: #222;
+            line-height: 1.7;
+            overflow-x: hidden;
+            padding-top: 76px;
+            transition: background-color 0.3s;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+        .titulo-revolucionario {
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* ========== LOADER ========== */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--negro);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+        #loader.oculto {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .loader-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(180, 30, 30, 0.3);
+            border-top-color: var(--rojo-intenso);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* ========== NAVBAR STICKY ========== */
+        .navbar-sandino {
+            background: var(--negro);
+            border-bottom: 3px solid var(--rojo-intenso);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            transition: var(--transicion);
+        }
+        .navbar-sandino .navbar-brand {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+            color: var(--blanco) !important;
+            transition: var(--transicion);
+        }
+        .navbar-sandino .navbar-brand span {
+            color: var(--rojo-intenso);
+        }
+        .navbar-sandino .nav-link {
+            color: #ccc !important;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            transition: var(--transicion);
+            position: relative;
+        }
+        .navbar-sandino .nav-link:hover,
+        .navbar-sandino .nav-link.activo {
+            color: var(--rojo-intenso) !important;
+        }
+        .navbar-sandino .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--rojo-intenso);
+            transition: width 0.3s;
+        }
+        .navbar-sandino .nav-link:hover::after {
+            width: 100%;
+        }
+        .navbar-sandino .btn-busqueda {
+            background: transparent;
+            border: 1px solid #555;
+            color: #fff;
+            border-radius: 20px;
+            padding: 6px 16px;
+            font-size: 0.9rem;
+            transition: var(--transicion);
+        }
+        .navbar-sandino .btn-busqueda:focus {
+            border-color: var(--rojo-intenso);
+            box-shadow: 0 0 0 3px rgba(180, 30, 30, 0.25);
+            background: #1a1a1a;
+            color: #fff;
+        }
+        .icono-social-nav {
+            color: #aaa;
+            font-size: 1.2rem;
+            margin: 0 6px;
+            transition: var(--transicion);
+        }
+        .icono-social-nav:hover {
+            color: var(--rojo-intenso);
+            transform: translateY(-2px);
+        }
+        .navbar-toggler {
+            border-color: rgba(255,255,255,0.3);
+        }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255,255,255,0.7)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+        }
+
+        /* ========== HERO BANNER SWIPER ========== */
+        .swiper-hero {
+            width: 100%;
+            height: 500px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--sombra);
+        }
+        .swiper-hero .swiper-slide {
+            position: relative;
+            background: #111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .swiper-hero .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #111;
+            filter: brightness(0.85);
+        }
+        .hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 60px 40px 30px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            color: #fff;
+            text-align: center;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .hero-overlay h2 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+            color: #f0e6d3;
+            margin-bottom: 4px;
+        }
+        .hero-overlay p {
+            font-size: 1.1rem;
+            color: var(--dorado);
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+        }
+        .swiper-button-next, .swiper-button-prev {
+            color: #fff !important;
+            background: rgba(0,0,0,0.5);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+        }
+        .swiper-button-next:after, .swiper-button-prev:after {
+            font-size: 1.2rem !important;
+            font-weight: bold;
+        }
+        .swiper-pagination-bullet {
+            background: #fff !important;
+            opacity: 0.6;
+        }
+        .swiper-pagination-bullet-active {
+            background: var(--rojo-intenso) !important;
+            opacity: 1;
+        }
+        @media (max-width: 768px) {
+            .swiper-hero {
+                height: 300px;
+            }
+            .hero-overlay h2 {
+                font-size: 1.4rem;
+            }
+            .hero-overlay p {
+                font-size: 0.85rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .swiper-hero {
+                height: 250px;
+            }
+        }
+
+        /* ========== LAYOUT PRINCIPAL 3 COLUMNAS ========== */
+        .contenedor-principal {
+            display: flex;
+            gap: 24px;
+            max-width: 1400px;
+            margin: 0 auto 40px;
+            padding: 0 16px;
+        }
+        .sidebar-izq {
+            width: 260px;
+            flex-shrink: 0;
+        }
+        .contenido-central {
+            flex: 1;
+            min-width: 0;
+        }
+        .sidebar-der {
+            width: 300px;
+            flex-shrink: 0;
+        }
+        @media (max-width: 1200px) {
+            .contenedor-principal {
+                flex-wrap: wrap;
+            }
+            .sidebar-izq {
+                width: 100%;
+                order: 2;
+            }
+            .contenido-central {
+                order: 1;
+                width: 100%;
+            }
+            .sidebar-der {
+                width: 100%;
+                order: 3;
+            }
+        }
+
+        /* ========== SIDEBAR IZQUIERDO ========== */
+        .panel-lateral {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: var(--sombra);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--rojo-intenso);
+            transition: var(--transicion);
+        }
+        .panel-lateral:hover {
+            box-shadow: var(--sombra-hover);
+        }
+        .panel-lateral h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--rojo-intenso);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+        }
+        .menu-enlace {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transicion);
+            margin-bottom: 4px;
+        }
+        .menu-enlace i {
+            width: 22px;
+            text-align: center;
+            color: #666;
+            transition: var(--transicion);
+        }
+        .menu-enlace:hover {
+            background: var(--rojo-intenso);
+            color: #fff !important;
+            transform: translateX(4px);
+        }
+        .menu-enlace:hover i {
+            color: #fff;
+        }
+
+        /* ========== CONTENIDO CENTRAL - TARJETAS ========== */
+        .tarjeta-articulo {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--sombra);
+            margin-bottom: 28px;
+            transition: var(--transicion);
+            border: 1px solid transparent;
+        }
+        .tarjeta-articulo:hover {
+            box-shadow: var(--sombra-hover);
+            transform: translateY(-4px);
+            border-color: rgba(180, 30, 30, 0.2);
+        }
+        .tarjeta-articulo .imagen-articulo {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+        .tarjeta-articulo .imagen-articulo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s;
+        }
+        .tarjeta-articulo:hover .imagen-articulo img {
+            transform: scale(1.08);
+        }
+        .tarjeta-articulo .cuerpo-articulo {
+            padding: 20px 22px;
+        }
+        .tarjeta-articulo .fecha {
+            font-size: 0.8rem;
+            color: #888;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+        .tarjeta-articulo h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #1a1a1a;
+        }
+        .tarjeta-articulo .resumen {
+            color: #555;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+        .btn-leer-mas {
+            background: var(--rojo-intenso);
+            color: #fff;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            transition: var(--transicion);
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-leer-mas:hover {
+            background: var(--rojo-oscuro);
+            color: #fff;
+            box-shadow: 0 6px 20px rgba(180, 30, 30, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* ========== SIDEBAR DERECHO ========== */
+        .perfil-panel {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: var(--sombra);
+            padding: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+            border-top: 4px solid var(--rojo-intenso);
+        }
+        .perfil-panel img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--rojo-intenso);
+            margin-bottom: 12px;
+            transition: var(--transicion);
+        }
+        .perfil-panel img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 24px rgba(180, 30, 30, 0.5);
+        }
+        .perfil-panel h4 {
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .perfil-panel .frase-perfil {
+            font-style: italic;
+            color: #777;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+        }
+        .widget-panel {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: var(--sombra);
+            padding: 18px;
+            margin-bottom: 18px;
+            transition: var(--transicion);
+        }
+        .widget-panel h5 {
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            color: var(--rojo-intenso);
+        }
+        .frase-revolucionaria {
+            font-style: italic;
+            color: #555;
+            text-align: center;
+            padding: 12px;
+            border-left: 3px solid var(--rojo-intenso);
+            background: #fafafa;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.95rem;
+        }
+
+        /* ========== GALERÍA MASONRY ========== */
+        .galeria-masonry {
+            column-count: 3;
+            column-gap: 16px;
+            margin: 30px 0;
+        }
+        .galeria-masonry .item {
+            break-inside: avoid;
+            margin-bottom: 16px;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+            transition: var(--transicion);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        }
+        .galeria-masonry .item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+        .galeria-masonry .item:hover img {
+            transform: scale(1.06);
+        }
+        .galeria-masonry .item .overlay-galeria {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transicion);
+        }
+        .galeria-masonry .item:hover .overlay-galeria {
+            opacity: 1;
+        }
+        .overlay-galeria i {
+            color: #fff;
+            font-size: 2rem;
+        }
+        @media (max-width: 768px) {
+            .galeria-masonry {
+                column-count: 2;
+            }
+        }
+        @media (max-width: 480px) {
+            .galeria-masonry {
+                column-count: 1;
+            }
+        }
+
+        /* ========== MODALES DE ARTÍCULOS ========== */
+        .modal-articulo .modal-header {
+            background: var(--negro);
+            color: #fff;
+            border-bottom: 3px solid var(--rojo-intenso);
+        }
+        .modal-articulo .modal-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .modal-articulo .modal-body {
+            font-size: 0.95rem;
+            color: #333;
+            line-height: 1.8;
+            padding: 24px;
+        }
+        .modal-articulo .modal-body img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 16px 0;
+            box-shadow: var(--sombra);
+        }
+
+        /* ========== FOOTER ========== */
+        .footer-sandino {
+            background: var(--negro);
+            color: #ccc;
+            padding: 50px 30px 20px;
+            margin-top: 40px;
+            border-top: 4px solid var(--rojo-intenso);
+        }
+        .footer-sandino h5 {
+            color: #fff;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+        .footer-sandino a {
+            color: #aaa;
+            text-decoration: none;
+        }
+        .footer-sandino a:hover {
+            color: var(--rojo-intenso);
+        }
+        .newsletter-input {
+            background: #1a1a1a;
+            border: 1px solid #444;
+            color: #fff;
+            border-radius: 20px;
+            padding: 8px 16px;
+            width: 100%;
+        }
+        .newsletter-input:focus {
+            border-color: var(--rojo-intenso);
+            outline: none;
+        }
+
+        /* ========== BOTÓN IR ARRIBA ========== */
+        .btn-ir-arriba {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--rojo-intenso);
+            color: #fff;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: none;
+            font-size: 1.2rem;
+            z-index: 999;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transicion);
+            box-shadow: 0 4px 16px rgba(180, 30, 30, 0.5);
+        }
+        .btn-ir-arriba.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .btn-ir-arriba:hover {
+            background: var(--negro);
+            transform: translateY(-4px);
+        }
+
+        /* ========== ANIMACIONES FADE-IN ========== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ========== LIGHTBOX MODAL ========== */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            inset: 0;
+            background: rgba(0,0,0,0.95);
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox-modal img {
+            max-width: 90vw;
+            max-height: 90vh;
+            border-radius: 8px;
+            box-shadow: 0 0 40px rgba(0,0,0,0.7);
+        }
+        .lightbox-cerrar {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        /* ========== SECCIÓN MULTIMEDIA ========== */
+        .video-wrapper iframe {
+            border-radius: 12px;
+            box-shadow: var(--sombra);
+            width: 100%;
+            height: 315px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- LOADER -->
+    <div id="loader">
+        <div class="loader-spinner"></div>
+    </div>
+
+    <!-- ==================== HEADER / NAVBAR STICKY ==================== -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-sandino fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">⚑ SANDINO<span>: Tecnología &amp; Revolución</span></a>
+            <button aria-controls="navbarSandino" aria-expanded="false" aria-label="Menú" class="navbar-toggler" data-bs-target="#navbarSandino" data-bs-toggle="collapse" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSandino">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link activo" href="#inicio">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#historia">Historia</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#multimedia">Multimedia</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#galeria">Galería</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#documentos">Documentos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#revolucion">Revolución</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+                </ul>
+                <div class="d-flex align-items-center gap-2">
+                   <a class="icono-social-nav" href="https://www.facebook.com/share/1aTAY2uMSh/" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a class="icono-social-nav" href="https://youtube.com/@ingrogeliogarcia?si=yIVcgrW6Db1WSpfg" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a class="icono-social-nav" href="https://www.tiktok.com/@el.pigui74?_r=1&amp;_t=ZS-96Ac3mwy02L" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a class="icono-social-nav" href="https://www.instagram.com/nedvedpigui?igsh=MThxcWl5bHJ2MzdicQ==" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <input class="btn-busqueda" id="busquedaInput" placeholder="Buscar..." style="width: 140px;" type="text" />
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ==================== BANNER CARRUSEL SWIPER ==================== -->
+    <div class="container" id="inicio">
+        <div class="swiper swiper-hero" id="swiperHero">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img alt="Sandino histórico" loading="eager" onerror="this.src='https://via.placeholder.com/1200x500/1a1a1a/d4a843?text=Augusto+C.+Sandino'" src="https://confidencial.digital/wp-content/uploads/2024/02/Sandino.png.avif" />
+                    <div class="hero-overlay"><h2>Historia y Legado</h2><p>El héroe que desafió al imperio</p></div>
+                </div>
+                <div class="swiper-slide">
+                    <img alt="El General de Hombres Libres" loading="lazy" onerror="this.src='https://via.placeholder.com/1200x500/1a1a1a/d4a843?text=General+Sandino'" src="https://faculty.chass.ncsu.edu/slatta/hi216/images/portraits/sandino%2B.jpg" />
+                    <div class="hero-overlay"><h2>El General de Hombres Libres</h2><p>Defensor de la soberanía nacional</p></div>
+                </div>
+                <div class="swiper-slide">
+                    <img alt="Tecnología y Revolución" loading="lazy" onerror="this.src='https://via.placeholder.com/1200x500/1a1a1a/d4a843?text=Tecnologia+y+Revolucion'" src="https://ichef.bbci.co.uk/ace/ws/800/cpsprodpb/beda/live/66513970-ca8e-11ee-896d-39d9bd3cadbb.jpg.webp" />
+                    <div class="hero-overlay"><h2>Tecnología y Revolución</h2><p>Innovación para la libertad</p></div>
+                </div>
+                <div class="swiper-slide">
+                    <img alt="Soberanía y Dignidad" loading="lazy" onerror="this.src='https://via.placeholder.com/1200x500/1a1a1a/d4a843?text=Soberania+y+Dignidad'" src="https://cdn.loc.gov/service/pnp/cph/3c20000/3c20000/3c20400/3c20495r.jpg" />
+                    <div class="hero-overlay"><h2>Soberanía y Dignidad</h2><p>El legado que trasciende generaciones</p></div>
+                </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+
+    <!-- ==================== CONTENEDOR PRINCIPAL 3 COLUMNAS ==================== -->
+    <div class="contenedor-principal">
+
+        <!-- ========== SIDEBAR IZQUIERDO ========== -->
+        <aside class="sidebar-izq">
+            <div class="panel-lateral fade-in">
+                <h4><i class="fas fa-bars me-2"></i>Menú de Enlaces</h4>
+                <a class="menu-enlace" href="#inicio"><i class="fas fa-home"></i> Inicio</a>
+                <a class="menu-enlace" href="#historia"><i class="fas fa-landmark"></i> Historia</a>
+                <a class="menu-enlace" href="#multimedia"><i class="fas fa-video"></i> Multimedia</a>
+                <a class="menu-enlace" href="#galeria"><i class="fas fa-images"></i> Galería</a>
+                <a class="menu-enlace" href="#documentos"><i class="fas fa-file-alt"></i> Documentos</a>
+                <a class="menu-enlace" href="#revolucion"><i class="fas fa-fist-raised"></i> Revolución</a>
+                <a class="menu-enlace" href="#contacto"><i class="fas fa-envelope"></i> Contacto</a>
+            </div>
+
+            <!-- Sección Multimedia en sidebar -->
+            <div class="panel-lateral fade-in" id="multimedia">
+                <h4><i class="fas fa-play-circle me-2"></i>Multimedia</h4>
+                <div class="video-wrapper mb-3">
+                    <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" src="https://www.youtube.com/embed/CY8ljj8S6Ko" title="Sandino Historia">
+        </iframe>
+                </div>
+                
+                <a class="btn-leer-mas mt-2 d-inline-block" href="https://www.youtube.com/watch?v=CY8ljj8S6Ko">Ver más multimedia</a>
+            </div>
+        </aside>
+
+        <!-- ========== CONTENIDO CENTRAL ========== -->
+        <main class="contenido-central" id="historia">
+            <h2 class="titulo-revolucionario mb-4 text-center fade-in">Artículos Históricos</h2>
+
+            <!-- Artículo 1: La Guerra del Segoviano -->
+            <article class="tarjeta-articulo fade-in">
+                <div class="imagen-articulo">
+                    <img alt="Tecnología y Educación Revolucionaria" loading="lazy" onerror="this.src='https://via.placeholder.com/800x400/1a1a1a/d4a843?text=Tecnologia+y+Educacion'" src="https://www.el19digital.com/files/galerias/165129.jpg" />
+                </div>
+                <div class="cuerpo-articulo">
+                    <span class="fecha"><i class="far fa-calendar-alt me-1"></i> 15 de abril, 2026</span>
+                    <h3>La Guerra del Segoviano</h3>
+                    <p class="resumen">El ejército defensor de la soberanía nacional libró una de las gestas más heroicas de América Latina. Descubre cómo Sandino organizó la resistencia en las montañas de Las Segovias.</p>
+                    <button class="btn-leer-mas" data-bs-target="#modalSegoviano" data-bs-toggle="modal">Leer más <i class="fas fa-arrow-right ms-1"></i></button>
+                </div>
+            </article>
+
+            <!-- Artículo 2: Regreso a Nicaragua -->
+            <article class="tarjeta-articulo fade-in">
+                <div class="imagen-articulo">
+                    <img alt="Tecnología y Educación Revolucionaria" loading="lazy" onerror="this.src='https://via.placeholder.com/800x400/1a1a1a/d4a843?text=Tecnologia+y+Educacion'" src="https://www.el19digital.com/files/galerias/165128.jpg" />
+                </div>
+                <div class="cuerpo-articulo">
+                    <span class="fecha"><i class="far fa-calendar-alt me-1"></i> 21 de febrero, 2026</span>
+                    <h3>Regreso a Nicaragua</h3>
+                    <p class="resumen">Tras años de lucha en el exilio, Sandino regresó a su patria para continuar la revolución. Conoce los detalles de su retorno y el recibimiento del pueblo nicaragüense.</p>
+                    <button class="btn-leer-mas" data-bs-target="#modalRegreso" data-bs-toggle="modal">Leer más <i class="fas fa-arrow-right ms-1"></i></button>
+                </div>
+            </article>
+
+            <!-- Artículo 3: Legado e Impacto -->
+            <article class="tarjeta-articulo fade-in">
+                <div class="imagen-articulo">
+                    <img alt="Tecnología y Educación Revolucionaria" loading="lazy" onerror="this.src='https://via.placeholder.com/800x400/1a1a1a/d4a843?text=Tecnologia+y+Educacion'" src="https://www.el19digital.com/files/galerias/165179.jpg" />
+                </div>
+                <div class="cuerpo-articulo">
+                    <span class="fecha"><i class="far fa-calendar-alt me-1"></i> 5 de enero, 2026</span>
+                    <h3>Legado e Impacto</h3>
+                    <p class="resumen">El pensamiento sandinista trascendió fronteras. Analizamos cómo su legado influye en los movimientos sociales y tecnológicos del siglo XXI.</p>
+                    <button class="btn-leer-mas" data-bs-target="#modalLegado" data-bs-toggle="modal">Leer más <i class="fas fa-arrow-right ms-1"></i></button>
+                </div>
+            </article>
+
+            <!-- Artículo 4: Tecnología y Educación Revolucionaria -->
+            <article class="tarjeta-articulo fade-in">
+                <div class="imagen-articulo">
+                    <img alt="Tecnología y Educación Revolucionaria" loading="lazy" onerror="this.src='https://via.placeholder.com/800x400/1a1a1a/d4a843?text=Tecnologia+y+Educacion'" src="https://www.el19digital.com/files/galerias/165213.jpg" />
+                </div>
+                <div class="cuerpo-articulo">
+                    <span class="fecha"><i class="far fa-calendar-alt me-1"></i> 30 de marzo, 2026</span>
+                    <h3>Tecnología y Educación Revolucionaria</h3>
+                    <p class="resumen">La visión de Sandino sobre la educación como herramienta de liberación. Cómo la tecnología actual honra su legado alfabetizador y emancipador.</p>
+                    <button class="btn-leer-mas" data-bs-target="#modalTecnologia" data-bs-toggle="modal">Leer más <i class="fas fa-arrow-right ms-1"></i></button>
+                </div>
+            </article>
+
+            <!-- ========== GALERÍA MASONRY ========== -->
+            <section class="fade-in" id="galeria">
+                <h2 class="titulo-revolucionario mb-4 text-center">Galería Histórica</h2>
+                <div class="galeria-masonry" id="galeriaMasonry">
+                    <div class="item" data-src="https://confidencial.digital/wp-content/uploads/2024/02/Sandino.png.avif">
+                        <img alt="Sandino" loading="lazy" src="https://confidencial.digital/wp-content/uploads/2024/02/Sandino.png.avif" />
+                        <div class="overlay-galeria"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                    <div class="item" data-src="https://faculty.chass.ncsu.edu/slatta/hi216/images/portraits/sandino%2B.jpg">
+                        <img alt="Sandino sombrero" loading="lazy" src="https://faculty.chass.ncsu.edu/slatta/hi216/images/portraits/sandino%2B.jpg" />
+                        <div class="overlay-galeria"><i class="fas fa-search-plus"></i></div>
+                    </div>                    
+                    <div class="item" data-src="https://faculty.chass.ncsu.edu/slatta/hi216/images/portraits/sandino%2B.jpg">
+                        <img alt="Sandino sombrero" loading="lazy" src="https://www.el19digital.com/files/galerias/165207.jpg" />
+                        <div class="overlay-galeria"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                    <div class="item" data-src="https://faculty.chass.ncsu.edu/slatta/hi216/images/portraits/sandino%2B.jpg">
+                        <img alt="Sandino sombrero" loading="lazy" src="https://www.el19digital.com/files/galerias/165209.jpg" />
+                        <div class="overlay-galeria"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                    <div class="item" data-src="https://faculty.chass.ncsu.edu/slatta/hi216/images/portraits/sandino%2B.jpg">
+                        <img alt="Sandino sombrero" loading="lazy" src="https://www.el19digital.com/files/galerias/165211.jpg" />
+                        <div class="overlay-galeria"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                    <div class="item" data-src="https://faculty.chass.ncsu.edu/slatta/hi216/images/portraits/sandino%2B.jpg">
+                        <img alt="Sandino sombrero" loading="lazy" src="https://www.el19digital.com/files/galerias/165123.jpg" />
+                        <div class="overlay-galeria"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                    <div class="item" data-src="https://faculty.chass.ncsu.edu/slatta/hi216/images/portraits/sandino%2B.jpg">
+                        <img alt="Sandino sombrero" loading="lazy" src="https://www.el19digital.com/files/galerias/165124.jpg" />
+                        <div class="overlay-galeria"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                    
+                </div>
+            </section>
+        </main>
+
+        <!-- ========== SIDEBAR DERECHO ========== -->
+        <aside class="sidebar-der">
+            <div class="perfil-panel fade-in">
+                <img alt="Augusto C. Sandino" loading="lazy" onerror="this.src='https://via.placeholder.com/200/1a1a1a/d4a843?text=Sandino'" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Augusto_C._Sandino.jpg/800px-Augusto_C._Sandino.jpg" />
+                <h4>Augusto C. Sandino</h4>
+                <p class="frase-perfil">"Patria y Libertad"</p>
+                <a class="btn-leer-mas" href="#">Ver Perfil</a>
+            </div>
+
+            <div class="widget-panel fade-in" id="revolucion">
+                <h5><i class="fas fa-archive me-2"></i>Archivo Histórico</h5>
+                <select class="form-select mb-2" style="font-size: 0.9rem;">
+                    <option selected="">Año 1926-1933</option>
+                    <option>Documentos 1926</option>
+                    <option>Manifiestos 1927</option>
+                    <option>Batallas 1928</option>
+                    <option>Correspondencia 1929</option>
+                    <option>Tratados 1930</option>
+                </select>
+                <h6 class="mt-3">Categorías</h6>
+                <div class="d-flex flex-wrap gap-1">
+                    <span class="badge bg-danger">Historia</span>
+                    <span class="badge bg-dark">Revolución</span>
+                    <span class="badge bg-secondary">Tecnología</span>
+                    <span class="badge bg-danger">Soberanía</span>
+                </div>
+                <h6 class="mt-3">Noticias Recientes</h6>
+                <ul class="list-unstyled" style="font-size: 0.85rem;">
+                    <li class="mb-1"><a class="text-decoration-none text-dark" href="#">→ Homenaje en Las Segovias</a></li>
+                    <li class="mb-1"><a class="text-decoration-none text-dark" href="#">→ Nuevo documental sobre Sandino</a></li>
+                    <li class="mb-1"><a class="text-decoration-none text-dark" href="#">→ Tecnología educativa sandinista</a></li>
+                </ul>
+            </div>
+
+            <div class="widget-panel fade-in">
+                <h5><i class="fas fa-calendar-alt me-2"></i>Calendario</h5>
+                <div class="text-center">
+                    <strong>Febrero 2026</strong>
+                    <div class="d-grid gap-1 mt-2" style="font-size: 0.8rem; grid-template-columns: repeat(7,1fr);">
+                        <span>L</span><span>M</span><span>X</span><span>J</span><span>V</span><span>S</span><span>D</span>
+                        <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span>
+                        <span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span>
+                        <span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span style="background: var(--rojo-intenso); border-radius: 50%; color: white;">21</span>
+                    </div>
+                </div>
+                <p class="text-center mt-2 mb-0" style="font-size: 0.8rem;">🗓️ 21 feb: Natalicio de Sandino</p>
+            </div>
+
+            <div class="widget-panel fade-in">
+                <h5><i class="fas fa-eye me-2"></i>Contador de Visitas</h5>
+                <p class="text-center" style="color: var(--rojo-intenso); font-size: 1.5rem; font-weight: 700;">12,847</p>
+            </div>
+
+            <div class="widget-panel fade-in">
+                <h5><i class="fas fa-quote-right me-2"></i>Frase del Día</h5>
+                <p class="frase-revolucionaria" id="fraseAleatoria">"La soberanía de un pueblo no se discute, se defiende con las armas en la mano."</p>
+            </div>
+
+            <div class="widget-panel fade-in text-center" id="documentos">
+                <h5>Redes Sociales</h5>
+                <div class="d-flex justify-content-center gap-3 fs-4">
+                    <a class="text-dark" href="https://www.facebook.com/share/1BwjPZEwmk/" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a class="text-dark" href="https://youtube.com/@vivanicaragua13?si=f5KbmrVT9UMGEo2z" title="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- ==================== MODALES DE ARTÍCULOS ==================== -->
+    <!-- Modal 1: La Guerra del Segoviano -->
+    <div aria-hidden="true" aria-labelledby="modalSegovianoLabel" class="modal fade modal-articulo" id="modalSegoviano" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalSegovianoLabel">⚔️ La Guerra del Segoviano</h5>
+                    <button aria-label="Cerrar" class="btn-close btn-close-white" data-bs-dismiss="modal" type="button"></button>
+                </div>
+                <div class="modal-body">
+                    <img alt="Sandino en las Segovias" class="img-fluid rounded mb-3" loading="lazy" src="https://confidencial.digital/wp-content/uploads/2024/02/Sandino.png.avif" />
+                    <p><strong>La Guerra del Segoviano</strong> (también conocida como la Guerra Sandinista) fue el conflicto armado que libró el General Augusto C. Sandino contra la ocupación estadounidense en Nicaragua entre 1927 y 1933. Tras la negativa a aceptar el pacto impuesto por el gobierno títere respaldado por los marines, Sandino se internó en las montañas de Las Segovias, al norte de Nicaragua, desde donde organizó un ejército popular de campesinos, obreros y patriotas decididos a defender la soberanía.</p>
+                    <p>La estrategia de guerrilla empleada por Sandino fue revolucionaria para su época. Utilizando el conocimiento del terreno montañoso, los ataques rápidos y la colaboración de las comunidades locales, el Ejército Defensor de la Soberanía Nacional (EDSN) logró mantener en jaque a una fuerza militar tecnológicamente superior. Las comunicaciones internas se realizaban mediante mensajeros indígenas y un rudimentario pero eficaz sistema de señales de humo y tambores, elementos que hoy son considerados precursores de las redes de comunicación descentralizada.</p>
+                    <p>La guerra no solo fue militar, sino también una guerra de ideas. Sandino comprendió la importancia de la propaganda y la solidaridad internacional. Envió manifiestos a gobiernos de América Latina, denunciando la intervención y llamando a la unidad antiimperialista. Esta dimensión comunicativa es un antecedente directo del uso actual de las redes sociales para la movilización política, uniendo el espíritu revolucionario con las herramientas tecnológicas modernas.</p>
+                    <p>El legado de la Guerra del Segoviano trasciende el triunfo militar de la retirada de las tropas estadounidenses en 1933. Se convirtió en un símbolo de resistencia para toda América Latina, inspirando movimientos revolucionarios y antiimperialistas en el siglo XX. Hoy, la figura de Sandino sigue siendo un referente de dignidad nacional y lucha por la autodeterminación, recordándonos que la tecnología y la comunicación son armas tan poderosas como los fusiles cuando se emplean al servicio de la libertad.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2: Regreso a Nicaragua -->
+    <div aria-hidden="true" aria-labelledby="modalRegresoLabel" class="modal fade modal-articulo" id="modalRegreso" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalRegresoLabel">🚩 Regreso a Nicaragua</h5>
+                    <button aria-label="Cerrar" class="btn-close btn-close-white" data-bs-dismiss="modal" type="button"></button>
+                </div>
+                <div class="modal-body">
+                    <img alt="Sandino regresa a Nicaragua" class="img-fluid rounded mb-3" loading="lazy" src="https://jpmas.com.ni/wp-content/uploads/2024/05/sandino-legacy-nicaragua-1024x574.jpeg.webp" />
+                    <p>Después de varios años en el exilio forzado, Augusto C. Sandino regresó a Nicaragua en un contexto de intensa agitación política. Había partido en 1929 hacia México, donde buscó apoyo internacional para la causa antiimperialista. Su retorno, en 1931, no fue un simple regreso geográfico; fue un reencuentro con la lucha armada y con la esperanza de un pueblo que veía en él al líder capaz de liberarlos de la ocupación extranjera.</p>
+                    <p>El regreso de Sandino se produjo en un momento crítico. La resistencia en Las Segovias continuaba, pero la presión militar estadounidense y la falta de recursos amenazaban con diezmar al EDSN. Sin embargo, su presencia revitalizó la moral de los combatientes y atrajo a nuevos voluntarios, convencidos de que la causa sandinista era justa y necesaria. Este fenómeno de liderazgo carismático puede compararse hoy con la capacidad de ciertos líderes digitales de movilizar comunidades a través de internet, demostrando que la conexión emocional y la claridad de ideales trascienden épocas y tecnologías.</p>
+                    <p>Durante este período, Sandino reforzó su idea de una "República Libre" basada en la justicia social, la tierra para los campesinos y la educación universal. Estos principios, adelantados a su tiempo, resuenan hoy en los debates sobre democracia digital y acceso equitativo a la tecnología. Sandino entendía que la verdadera independencia requería no solo la retirada de tropas invasoras, sino también la emancipación cultural y educativa del pueblo.</p>
+                    <p>Su regreso también implicó un desafío directo al gobierno conservador de turno y a los intereses estadounidenses. A pesar de los riesgos, Sandino nunca abandonó su convicción de que la paz solo podría alcanzarse mediante la retirada incondicional de las fuerzas ocupantes. Este episodio histórico nos enseña que la perseverancia y la coherencia son valores fundamentales tanto en la revolución armada como en cualquier proceso de transformación social impulsado por la tecnología y la comunicación moderna.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 3: Legado e Impacto -->
+    <div aria-hidden="true" aria-labelledby="modalLegadoLabel" class="modal fade modal-articulo" id="modalLegado" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLegadoLabel">🔥 Legado e Impacto</h5>
+                    <button aria-label="Cerrar" class="btn-close btn-close-white" data-bs-dismiss="modal" type="button"></button>
+                </div>
+                <div class="modal-body">
+                    <img alt="Sandino en México" class="img-fluid rounded mb-3" loading="lazy" src="https://ichef.bbci.co.uk/ace/ws/800/cpsprodpb/beda/live/66513970-ca8e-11ee-896d-39d9bd3cadbb.jpg.webp" />
+                    <p>El legado de Augusto C. Sandino es inabarcable. Su lucha no solo consiguió la retirada de las tropas estadounidenses de Nicaragua en 1933, hecho sin precedentes en la historia latinoamericana, sino que sembró las semillas ideológicas del Frente Sandinista de Liberación Nacional (FSLN) y de innumerables movimientos sociales en todo el mundo. Su pensamiento antiimperialista, su defensa de la autodeterminación y su concepto de "patria libre" siguen vigentes en el siglo XXI.</p>
+                    <p>En el ámbito tecnológico y educativo, Sandino fue un visionario. Creía firmemente que la educación era la clave para la liberación definitiva. En sus campamentos, estableció escuelas para los hijos de los soldados y para adultos que no sabían leer ni escribir. Imaginó una Nicaragua donde cada ciudadano tuviera acceso al conocimiento, una visión que hoy se materializa a través de la tecnología digital y la conectividad global. Este paralelismo entre su ideal educativo y las modernas plataformas de enseñanza en línea es evidente: la revolución continúa, pero ahora con bits en lugar de balas.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 4: Tecnología y Educación Revolucionaria -->
+<div aria-hidden="true" aria-labelledby="modalTecnologiaLabel" class="modal fade modal-articulo" id="modalTecnologia" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTecnologiaLabel">💻 Tecnología y Educación Revolucionaria</h5>
+                <button aria-label="Cerrar" class="btn-close btn-close-white" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <div class="modal-body">
+                <img alt="Sandino: Tecnología y Revolución" class="img-fluid rounded mb-3" loading="lazy" src="https://imgs.search.brave.com/ChpJcnS0XDSXVWO7mh58Qv1eXNlXbyZ-jV8-rKYwB5A/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/ZWwxOWRpZ2l0YWwu/Y29tL2ZpbGVzL2dh/bGVyaWFzL3RodW1i/cy8xNjUxNzUuanBn" />
+                <p>La relación entre tecnología y revolución fue intuida por Sandino mucho antes de la era digital. En sus documentos y proclamas, el General instaba a la juventud a capacitarse, a dominar las herramientas del conocimiento y a utilizarlas para el bien común y la defensa de la soberanía. Para él, la educación no era un lujo, sino un arma estratégica contra la opresión.</p>
+                <p>En la actualidad, el espíritu sandinista se puede revivir a través de proyectos de tecnología educativa, software libre, y plataformas que democratizan el acceso al saber. Sandino soñó con una Nicaragua alfabetizada; hoy, la alfabetización digital es el nuevo horizonte. Iniciativas como las escuelas de programación comunitarias o las redes de internet autogestionadas son herederas directas de aquel ideario de autosuficiencia y emancipación.</p>
+                <p>Este portal, "Sandino: Tecnología y Revolución", busca precisamente tender puentes entre el pasado revolucionario y el futuro digital. Entendiendo que la lucha por la soberanía nacional ahora también se libra en el ciberespacio, defendiendo datos, infraestructura y contenidos propios frente a nuevas formas de colonización tecnológica. Así, cada línea de código escrita con conciencia social es un homenaje al General de Hombres y Mujeres Libres.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="footer-sandino" id="contacto">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-4 fade-in">
+                <h5>⚑ Sandino: Tecnología y Revolución</h5>
+                <p>Portal digital dedicado a preservar y difundir el legado del General Augusto C. Sandino, combinando historia, tecnología y educación revolucionaria.</p>
+            </div>
+            <div class="col-md-3 fade-in">
+                <h5>Enlaces Rápidos</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#historia">Historia</a></li>
+                    <li><a href="#galeria">Galería</a></li>
+                    <li><a href="#multimedia">Multimedia</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="col-md-2 fade-in text-center">
+                <h5>Contacto</h5>
+                <p style="font-size: 0.85rem;">Teléfono: 25226990</p>
+                <p style="font-size: 0.85rem;">Masaya, Nicaragua</p>
+            </div>
+        </div>
+        <hr style="border-color: #333;" />
+        <p class="text-center mb-0" style="font-size: 0.85rem;">© 2026 Sandino: Tecnología y Revolución | Siempre Más Allá</p>
+    </div>
+</footer>
+
+<!-- ==================== LIGHTBOX MODAL ==================== -->
+<div class="lightbox-modal" id="lightboxModal">
+    <span class="lightbox-cerrar" id="lightboxCerrar">×</span>
+    <img alt="Lightbox" id="lightboxImg" src="" />
+</div>
+
+<!-- ==================== BOTÓN IR ARRIBA ==================== -->
+<button class="btn-ir-arriba" id="btnIrArriba" title="Ir arriba"><i class="fas fa-chevron-up"></i></button>
+
+<!-- ==================== SCRIPTS ==================== -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js">
+</script>
+
+<script>
+    (function() {
+        // ========== LOADER ==========
+        window.addEventListener('load', function() {
+            document.getElementById('loader').classList.add('oculto');
+        });
+
+        // ========== SWIPER HERO ==========
+        const swiper = new Swiper('#swiperHero', {
+            loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            speed: 800,
+            effect: 'slide',
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+
+        // ========== GALERÍA LIGHTBOX ==========
+        const lightboxModal = document.getElementById('lightboxModal');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxCerrar = document.getElementById('lightboxCerrar');
+        const itemsGaleria = document.querySelectorAll('#galeriaMasonry .item');
+
+        itemsGaleria.forEach(item => {
+            item.addEventListener('click', function() {
+                const src = this.getAttribute('data-src');
+                lightboxImg.src = src;
+                lightboxModal.style.display = 'flex';
+            });
+        });
+        lightboxCerrar.addEventListener('click', function() {
+            lightboxModal.style.display = 'none';
+        });
+        lightboxModal.addEventListener('click', function(e) {
+            if (e.target === lightboxModal) {
+                lightboxModal.style.display = 'none';
+            }
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && lightboxModal.style.display === 'flex') {
+                lightboxModal.style.display = 'none';
+            }
+        });
+
+        // ========== BOTÓN IR ARRIBA ==========
+        const btnIrArriba = document.getElementById('btnIrArriba');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 400) {
+                btnIrArriba.classList.add('visible');
+            } else {
+                btnIrArriba.classList.remove('visible');
+            }
+        });
+        btnIrArriba.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ========== FADE-IN AL SCROLL ==========
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const observerOptions = { threshold: 0.2, rootMargin: '0px 0px -60px 0px' };
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        fadeElements.forEach(el => observer.observe(el));
+
+        // ========== FRASES ALEATORIAS ==========
+        const frases = [
+            '"Mi mayor honra es surgir del seno de los oprimidos."',
+            '"La soberanía de un pueblo no se discute, se defiende."',
+            '"Nosotros iremos hacia el sol de la libertad o hacia la muerte."',
+            '"Yo no estoy dispuesto a entregar las armas sin justicia y soberanía."',
+            '"Si hubiera 100 Sandinos, Nicaragua sería libre."',
+            '"Patria y Libertad."',
+            '"El que se rinde es un vencido, el que resiste es un héroe."'
+        ];
+        const fraseEl = document.getElementById('fraseAleatoria');
+        setInterval(function() {
+            const nuevaFrase = frases[Math.floor(Math.random() * frases.length)];
+            fraseEl.style.opacity = '0';
+            fraseEl.style.transition = 'opacity 0.4s';
+            setTimeout(() => {
+                fraseEl.textContent = nuevaFrase;
+                fraseEl.style.opacity = '1';
+            }, 400);
+        }, 6000);
+
+        // ========== BÚSQUEDA SIMULADA ==========
+        const busquedaInput = document.getElementById('busquedaInput');
+        busquedaInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                alert('Búsqueda de: "' + busquedaInput.value + '" (funcionalidad simulada)');
+                busquedaInput.value = '';
+            }
+        });
+
+        // ========== NAV-LINKS: ACTIVO AL HACER CLICK ==========
+        const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.forEach(l => l.classList.remove('activo'));
+                this.classList.add('activo');
+            });
+        });
+
+        console.log('✅ Sitio "Sandino: Tecnología y Revolución | Siempre Más Allá" cargado exitosamente.');
+    })();
+</script>
+</body>
+</html>
